@@ -60,7 +60,8 @@ public class AppConfig implements AppProperties {
     }
     
     private File getDefaultConfig() {
-        return new File(new File(System.getProperty("user.home")), AppLocal.APP_ID + ".properties");
+        logger.info("conf:" + System.getProperty("user.dir") + "/config/"  + AppLocal.APP_ID + ".properties");
+        return new File(new File(System.getProperty("user.dir")), "/config/" + AppLocal.APP_ID + ".properties");
     }
     
     public String getProperty(String sKey) {
@@ -130,7 +131,7 @@ public class AppConfig implements AppProperties {
         
         m_propsconfig.setProperty("db.driverlib", new File(new File(dirname), "lib/derby.jar").getAbsolutePath());
         m_propsconfig.setProperty("db.driver", "org.apache.derby.jdbc.EmbeddedDriver");
-        m_propsconfig.setProperty("db.URL", "jdbc:derby:" + new File(new File(System.getProperty("user.home")), AppLocal.APP_ID + "-database").getAbsolutePath() + ";create=true");
+        m_propsconfig.setProperty("db.URL", "jdbc:derby:" + new File(new File(System.getProperty("user.dir")), "/config/" + AppLocal.APP_ID + "-database").getAbsolutePath() + ";create=true");
         m_propsconfig.setProperty("db.user", "");
         m_propsconfig.setProperty("db.password", "");
 

@@ -45,7 +45,7 @@ public class PropertyUtils {
     }
 
     private File getDefaultConfig() {
-        return new File(new File(System.getProperty("user.home")), APP_ID + ".properties");
+        return new File(new File(System.getProperty("user.dir")), "/config/" + APP_ID + ".properties");
     }
 
     private void load() {
