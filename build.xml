@@ -32,7 +32,7 @@
     <property name="javac.deprecation" value="off"/>
     <property name="javac.optimize" value="on"/>
     <property name="javac.debug" value="off"/>
-    <property name="javac.minVMVersion" value="1.6"/>
+    <property name="javac.minVMVersion" value="1.8"/>
     <!-- read in property files -->
     <property file="build.properties" />
     <property name="src.pos" value="${basedir}/src-pos"/>
@@ -94,7 +94,9 @@
                debug="${javac.debug}"
                deprecation="${javac.deprecation}"
                optimize="${javac.optimize}"
-               target="${javac.minVMVersion}">
+               source="${javac.minVMVersion}"
+               target="${javac.minVMVersion}"
+               includeantruntime="false">
         </javac>
         <copy todir="${dest.classes}/beans">
             <fileset dir="${src.beans}">
@@ -113,7 +115,9 @@
                debug="${javac.debug}"
                deprecation="${javac.deprecation}"
                optimize="${javac.optimize}"
-               target="${javac.minVMVersion}">
+               source="${javac.minVMVersion}"
+               target="${javac.minVMVersion}"
+               includeantruntime="false">
             <classpath>
                 <pathelement location="${dest.classes}/beans"/>
             </classpath>
@@ -135,7 +139,9 @@
                debug="${javac.debug}"
                deprecation="${javac.deprecation}"
                optimize="${javac.optimize}"
-               target="${javac.minVMVersion}">
+               source="${javac.minVMVersion}"
+               target="${javac.minVMVersion}"
+               includeantruntime="false">
             <classpath>
                   <fileset dir="${basedir}/lib">
                     <include name="**/*.jar"/>
@@ -161,7 +167,9 @@
                debug="${javac.debug}"
                deprecation="${javac.deprecation}"
                optimize="${javac.optimize}"
-               target="${javac.minVMVersion}">
+               source="${javac.minVMVersion}"
+               target="${javac.minVMVersion}"
+               includeantruntime="false">
             <classpath>
                   <fileset dir="${basedir}/lib">
                     <include name="**/*.jar"/>
@@ -275,7 +283,9 @@
                debug="${javac.debug}"
                deprecation="${javac.deprecation}"
                optimize="${javac.optimize}"
-               target="${javac.minVMVersion}">
+               source="${javac.minVMVersion}"
+               target="${javac.minVMVersion}"
+               includeantruntime="false">
             <classpath>
                 <fileset dir="${src.web}/WEB-INF/lib">
                     <include name="**/*.jar"/>
