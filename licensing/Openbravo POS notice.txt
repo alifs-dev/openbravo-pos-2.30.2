@@ -56,6 +56,8 @@ Portions of this code are developed by The Apache Software Foundation (www.apach
 - jakarta-oro (a dependency of struts)
 - struts.jar
 - standard.jar
+- json-simple-1.1.1.jar
+
 Copyright � 1999-2007, The Apache Software Foundation. Distributed under the Apache License Version 2.0, January 2004
 
 Other third party libraries in /lib/

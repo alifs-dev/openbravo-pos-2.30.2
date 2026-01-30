@@ -1,0 +1,67 @@
+//    Openbravo POS is a point of sales application designed for touch screens.
+//    Copyright (C) 2007-2009 Openbravo, S.L.
+//    http://www.openbravo.com/product/pos
+//
+//    This file is part of Openbravo POS.
+//
+//    Openbravo POS is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    Openbravo POS is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with Openbravo POS.  If not, see <http://www.gnu.org/licenses/>.
+//
+report = new com.openbravo.pos.reports.PanelReportBean();
+
+report.setTitleKey("Menu.Ticket");
+report.setReport("/com/openbravo/reports/daytickets/daytickets");
+report.setResourceBundle("com/openbravo/reports/daytickets/daytickets_messages");
+
+report.setSentence("SELECT " + 
+                   "    PAYMENTS.TOTAL AS PAYMENTS_TOTAL, " +
+                   "    TICKETS.TICKETID AS TICKETS_TICKETID, " +
+//                   "    PAYMENTS.PAYMENT AS PAYMENTS_PAYMENT, " +
+                   "    CASE " +
+				   "        WHEN PAYMENTS.PAYMENT = 'cash' THEN 'Espece' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'paperin' THEN 'Ticket resto' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'cheque' THEN 'Cheque' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'chequerefund' THEN 'Rendu Cheque' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'cashrefund' THEN 'Rendu' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'magcard' THEN 'CB' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'magcardrefund' THEN 'Rendu CB' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'free' THEN 'Offert' " +
+				   "        WHEN PAYMENTS.PAYMENT = 'debt' THEN 'Impaye' " +
+				   "        ELSE PAYMENTS.PAYMENT " +
+				   "    END " +
+				   "    AS PAYMENTS_PAYMENT, " +
+                   "    CLOSEDCASH.DATESTART AS CLOSEDCASH_DATESTART, " +
+                   "    CLOSEDCASH.DATEEND AS CLOSEDCASH_DATEEND " +
+                   "FROM CLOSEDCASH " +
+				   "    INNER JOIN RECEIPTS ON CLOSEDCASH.MONEY = RECEIPTS.MONEY " +
+				   "    INNER JOIN PAYMENTS ON RECEIPTS.ID = PAYMENTS.RECEIPT " +
+				   "    INNER JOIN TICKETS ON RECEIPTS.ID = TICKETS.ID " +
+                   "WHERE CLOSEDCASH.MONEY = RECEIPTS.MONEY " + 
+				   "AND PAYMENTS.RECEIPT = RECEIPTS.ID AND " +
+				   "?(QBF_FILTER) " +
+//				   "GROUP BY CLOSEDCASH.DATESTART, CLOSEDCASH.DATEEND " +
+                   "ORDER BY CLOSEDCASH.DATESTART");
+report.addParameter("CLOSEDCASH.DATEEND");
+report.addParameter("CLOSEDCASH.DATEEND");
+paramdates = new com.openbravo.pos.reports.JParamsDatesInterval();
+paramdates.setStartDate(com.openbravo.beans.DateUtils.getToday());
+report.addQBFFilter(paramdates);
+
+report.addField("PAYMENTS_TOTAL", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("TICKETS_TICKETID", com.openbravo.data.loader.Datas.INT);
+report.addField("PAYMENTS_PAYMENT", com.openbravo.data.loader.Datas.STRING);
+report.addField("CLOSEDCASH_DATESTART", com.openbravo.data.loader.Datas.TIMESTAMP);
+report.addField("CLOSEDCASH_DATEEND", com.openbravo.data.loader.Datas.TIMESTAMP);
+
+report;
+

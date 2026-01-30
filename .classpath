@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21"/>
 	<classpathentry kind="src" path="src-pos"/>
 	<classpathentry kind="src" path="src-erp"/>
 	<classpathentry kind="src" path="src-data"/>
@@ -33,5 +33,8 @@
 	<classpathentry kind="lib" path="/home/ali/StudioProjects/OpenBravo/openbravopos-posmod/lib/swingx-0.9.5.jar"/>
 	<classpathentry kind="lib" path="/home/ali/StudioProjects/OpenBravo/openbravopos-posmod/lib/substance.jar"/>
 	<classpathentry kind="lib" path="/home/ali/StudioProjects/OpenBravo/openbravopos-posmod/lib/substance-swingx.jar"/>
+
+	<classpathentry kind="lib" path="/home/ali/StudioProjects/OpenBravo/openbravopos-posmod/lib/json-simple-1.1.1.jar"/>
+
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

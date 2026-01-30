@@ -21,6 +21,8 @@ package com.openbravo.pos.printer;
 
 import com.openbravo.data.loader.LocalRes;
 import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
 import java.awt.image.BufferedImage;
 import java.applet.*;
 
@@ -30,6 +32,9 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import com.openbravo.pos.forms.DataLogicSystem;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class TicketParser extends DefaultHandler {
     
@@ -40,6 +45,7 @@ public class TicketParser extends DefaultHandler {
     
     private StringBuffer text;
     
+    private String bcfield;
     private String bctype;
     private String bcposition;
     private int m_iTextAlign;
@@ -61,7 +67,9 @@ public class TicketParser extends DefaultHandler {
     private static final int OUTPUT_TICKET = 2;
     private static final int OUTPUT_FISCAL = 3;
     private DevicePrinter m_oOutputPrinter;
-    
+
+    private JSONParser parser = new JSONParser();
+
     
     /** Creates a new instance of TicketParser */
     public TicketParser(DeviceTicket printer, DataLogicSystem system) {
@@ -96,6 +104,7 @@ public class TicketParser extends DefaultHandler {
     public void startDocument() throws SAXException {
         // inicalizo las variables pertinentes
         text = null;
+        bcfield = null;
         bctype = null;
         bcposition = null;
         m_sVisorLine = null;
@@ -160,6 +169,8 @@ public class TicketParser extends DefaultHandler {
                 m_oOutputPrinter.beginLine(parseInt(attributes.getValue("size"), DevicePrinter.SIZE_0));
             } else if ("text".equals(qName)) {
                 text = new StringBuffer();
+                bctype = attributes.getValue("type");
+                bcfield = attributes.getValue("field");
                 m_iTextStyle = ("true".equals(attributes.getValue("bold")) ? DevicePrinter.STYLE_BOLD : DevicePrinter.STYLE_PLAIN)
                              | ("true".equals(attributes.getValue("underline")) ? DevicePrinter.STYLE_UNDERLINE : DevicePrinter.STYLE_PLAIN);
                 String sAlign = attributes.getValue("align");
@@ -244,21 +255,36 @@ public class TicketParser extends DefaultHandler {
                         text.toString());
                 text = null;
             } else if ("text".equals(qName)) {
-                if (m_iTextLength > 0) {
-                    switch(m_iTextAlign) {
-                    case DevicePrinter.ALIGN_RIGHT:
-                        m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignRight(text.toString(), m_iTextLength));
-                        break;
-                    case DevicePrinter.ALIGN_CENTER:
-                        m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignCenter(text.toString(), m_iTextLength));
-                        break;
-                    default: // DevicePrinter.ALIGN_LEFT
-                        m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignLeft(text.toString(), m_iTextLength));
-                        break;
+                    if("json".equals(bctype)) {
+                        String textResource = m_system.getResourceAsText(text.toString()); 
+                        if (bcfield != null && textResource != "") {
+                            try {
+                                Object jsonObj = parser.parse(textResource);  
+                                JSONObject jsonObject = (JSONObject) jsonObj;
+                                text = new StringBuffer(jsonObject.get(bcfield).toString());
+            
+                            } catch (ParseException e) {
+                                // TODO Auto-generated catch block
+                                e.printStackTrace();
+                            }
+                        }            
                     }
-                } else {
-                    m_oOutputPrinter.printText(m_iTextStyle, text.toString());
-                }
+
+                    if (m_iTextLength > 0) {
+                        switch(m_iTextAlign) {
+                        case DevicePrinter.ALIGN_RIGHT:
+                            m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignRight(text.toString(), m_iTextLength));
+                            break;
+                        case DevicePrinter.ALIGN_CENTER:
+                            m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignCenter(text.toString(), m_iTextLength));
+                            break;
+                        default: // DevicePrinter.ALIGN_LEFT
+                            m_oOutputPrinter.printText(m_iTextStyle, DeviceTicket.alignLeft(text.toString(), m_iTextLength));
+                            break;
+                        }
+                    } else {
+                        m_oOutputPrinter.printText(m_iTextStyle, text.toString());
+                    }
                 text = null;
             } else if ("line".equals(qName)) {
                 m_oOutputPrinter.endLine();

@@ -1,0 +1,58 @@
+//    Openbravo POS is a point of sales application designed for touch screens.
+//    Copyright (C) 2007-2009 Openbravo, S.L.
+//    http://www.openbravo.com/product/pos
+//
+//    This file is part of Openbravo POS.
+//
+//    Openbravo POS is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    Openbravo POS is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with Openbravo POS.  If not, see <http://www.gnu.org/licenses/>.
+
+report = new com.openbravo.pos.reports.PanelReportBean();
+
+report.setTitleKey("Menu.ClosePos.By.Payment");
+report.setReport("/com/openbravo/reports/closedposbypayment");
+report.setResourceBundle("com/openbravo/reports/closedposbypayment_messages");
+
+report.setSentence("SELECT " + 
+                    "CASE " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'cash' THEN 'Espece' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'paperin' THEN 'Ticket resto' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'cheque' THEN 'Cheque' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'chequerefund' THEN 'Rendu Cheque' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'cashrefund' THEN 'Rendu' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'magcard' THEN 'CB' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'magcardrefund' THEN 'Rendu CB' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'free' THEN 'Offert' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'cashin' THEN 'Entrée espèce' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'cashout' THEN 'Sortie espèce' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'debt' THEN 'Dette client' " + 
+                    "    WHEN PAYMENTS.PAYMENT = 'debtpaid' THEN 'Paiement client' " + 
+                    "    ELSE PAYMENTS.PAYMENT " + 
+                    "END " + 
+                    "AS PAYMENT, " + 
+                    "SUM(PAYMENTS.TOTAL) AS TOTAL " + 
+                    "FROM CLOSEDCASH, PAYMENTS, RECEIPTS " + 
+                    "WHERE CLOSEDCASH.MONEY = RECEIPTS.MONEY AND PAYMENTS.RECEIPT = RECEIPTS.ID  AND ?(QBF_FILTER) " + 
+                    "GROUP BY  PAYMENTS.PAYMENT");
+
+report.addParameter("CLOSEDCASH.DATEEND");
+report.addParameter("CLOSEDCASH.DATEEND");
+paramdates = new com.openbravo.pos.reports.JParamsDatesInterval();
+paramdates.setStartDate(com.openbravo.beans.DateUtils.getToday());
+report.addQBFFilter(paramdates);
+
+report.addField("PAYMENT", com.openbravo.data.loader.Datas.STRING);
+report.addField("TOTAL", com.openbravo.data.loader.Datas.DOUBLE);
+
+report;
+

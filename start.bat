@@ -51,6 +51,7 @@ set CP=%CP%;"%DIRNAME%lib/saaj.jar"
 set CP=%CP%;"%DIRNAME%lib/wsdl4j-1.5.1.jar"
 set CP=%CP%;"%DIRNAME%lib/commons-discovery-0.2.jar"
 set CP=%CP%;"%DIRNAME%lib/commons-logging-1.0.4.jar"
+set CP=%CP%;"%DIRNAME%lib/json-simple-1.1.1.jar"
 
 set CP=%CP%;"%DIRNAME%locales/"
 set CP=%CP%;"%DIRNAME%reports/"
