@@ -20,7 +20,7 @@
     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 -->
 
-<!ELEMENT output (ticket | display | opendrawer | play | )*>
+<!ELEMENT output (ticket | display | opendrawer | play )*>
 
 <!ELEMENT ticket (line | image | barcode | cut)*>
 <!ATTLIST ticket printer CDATA "0">
@@ -30,6 +30,7 @@
 
 <!ELEMENT text (#PCDATA)>
 <!ATTLIST text align (left | right | center) "left">
+<!ATTLIST text type (json) "json">
 <!ATTLIST text length CDATA #IMPLIED>
 <!ATTLIST text bold (true | false) "false">
 <!ATTLIST text underline (true | false) "false">

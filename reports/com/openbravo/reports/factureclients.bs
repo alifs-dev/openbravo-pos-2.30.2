@@ -1,0 +1,93 @@
+//    Openbravo POS is a point of sales application designed for touch screens.
+//    Copyright (C) 2007-2009 Openbravo, S.L.
+//    http://www.openbravo.com/product/pos
+//
+//    This file is part of Openbravo POS.
+//
+//    Openbravo POS is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    Openbravo POS is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with Openbravo POS.  If not, see <http://www.gnu.org/licenses/>.
+
+report = new com.openbravo.pos.reports.PanelReportBean();
+
+report.setTitleKey("Menu.Facture");
+report.setReport("/com/openbravo/reports/factureclients");
+report.setResourceBundle("com/openbravo/reports/factureclients_messages");
+
+report.setSentence( "SELECT RECEIPTS.DATENEW, TICKETS.TICKETID, " +
+                    "       PAYMENTS.TOTAL, CUSTOMERS.ADDRESS, " +
+                    "       CUSTOMERS.ADDRESS2,CUSTOMERS.POSTAL,CUSTOMERS.CITY,CUSTOMERS.NAME, " +
+                    "TAXLINES.BASE , TAXLINES.AMOUNT, " +
+                    "TAXLINES.BASE + TAXLINES.AMOUNT AS TOTAL_TICKET, " +
+                    "CASE " +
+                    "    WHEN TAXES.RATE = 0.1 THEN TAXLINES.AMOUNT " +
+                    "    ELSE 0.0 " +
+                    "END " +
+                    "AS TVA5_5, " +
+                    "CASE " +
+                    "    WHEN TAXES.RATE = 0.2 THEN TAXLINES.AMOUNT " +
+                    "    ELSE 0.0 " +
+                    "END " +
+                    "AS TVA19_6 " +
+                    "FROM TICKETS, CUSTOMERS, PAYMENTS, TAXES, RECEIPTS " +
+                    "LEFT JOIN TAXLINES ON TAXLINES.RECEIPT = RECEIPTS.ID " +
+                    "WHERE " +
+                    "TAXES.ID = TAXLINES.TAXID AND " +
+                    "RECEIPTS.ID = TICKETS.ID AND " +
+                    "RECEIPTS.ID = PAYMENTS.RECEIPT AND " +
+                    "TICKETS.CUSTOMER = CUSTOMERS.ID AND " +
+                    "PAYMENTS.PAYMENT = 'debt' AND" +
+                    "?(QBF_FILTER) " +
+                    "ORDER BY CUSTOMERS.NAME,RECEIPTS.DATENEW ASC ");
+
+report.addParameter("CUSTOMERS.ID");
+report.addParameter("CUSTOMERS.NAME");
+report.addQBFFilter(new com.openbravo.pos.reports.JParamsCustomer());
+
+report.addParameter("RECEIPTS.DATENEW");
+report.addParameter("RECEIPTS.DATENEW");
+
+Calendar calendar = Calendar.getInstance();
+calendar.set(calendar.HOUR_OF_DAY, 0);
+calendar.set(calendar.MINUTE, 0);
+calendar.set(calendar.SECOND, 0);
+calendar.set(calendar.MILLISECOND, 0);
+calendar.set(Calendar.DAY_OF_MONTH, 1); 
+calendar.set(Calendar.DATE, 1);   // first date of the month
+calendar.add(Calendar.MONTH, -1); // previous month
+Date firstDay = calendar.getTime();  
+
+calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));  
+Date lastDay = calendar.getTime();  
+
+paramdates = new com.openbravo.pos.reports.JParamsDatesInterval();
+paramdates.setStartDate(firstDay);
+paramdates.setEndDate(lastDay);
+
+report.addQBFFilter(paramdates);
+
+report.addField("DATENEW", com.openbravo.data.loader.Datas.TIMESTAMP);
+report.addField("TICKETID", com.openbravo.data.loader.Datas.STRING);
+report.addField("TOTAL", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("ADDRESS", com.openbravo.data.loader.Datas.STRING);
+report.addField("ADDRESS2", com.openbravo.data.loader.Datas.STRING);
+report.addField("POSTAL", com.openbravo.data.loader.Datas.STRING);
+report.addField("CITY", com.openbravo.data.loader.Datas.STRING);
+report.addField("NAME", com.openbravo.data.loader.Datas.STRING);
+report.addField("BASE", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("AMOUNT", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("TOTAL_TICKET", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("TVA5_5", com.openbravo.data.loader.Datas.DOUBLE);
+report.addField("TVA19_6", com.openbravo.data.loader.Datas.DOUBLE);
+
+report;
+

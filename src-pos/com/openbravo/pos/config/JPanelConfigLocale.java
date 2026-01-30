@@ -21,12 +21,14 @@ package com.openbravo.pos.config;
 
 import com.openbravo.data.user.DirtyManager;
 import java.awt.Component;
+import java.text.NumberFormat;
 import java.util.Locale;
 import com.openbravo.pos.forms.AppConfig;
 import com.openbravo.pos.forms.AppLocal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Currency;
 import java.util.List;
 
 /**
@@ -64,7 +66,9 @@ public class JPanelConfigLocale extends javax.swing.JPanel implements PanelConfi
         for (Locale l : availablelocales) {
             jcboLocale.addItem(new LocaleInfo(l));
         }
-        
+        Currency currency = Currency.getInstance(getLocale());
+        String currencySymbol = currency.getSymbol();
+
         jcboInteger.addItem(DEFAULT_VALUE);
         jcboInteger.addItem("#0");
         jcboInteger.addItem("#,##0");
@@ -74,8 +78,8 @@ public class JPanelConfigLocale extends javax.swing.JPanel implements PanelConfi
         jcboDouble.addItem("#,##0.#");
         
         jcboCurrency.addItem(DEFAULT_VALUE);
-        jcboCurrency.addItem("\u00A4 #0.00");
-        jcboCurrency.addItem("'$' #,##0.00");
+        jcboCurrency.addItem("#0.00 " + currencySymbol);
+        jcboCurrency.addItem(currencySymbol + " #,##0.00");
         
         jcboPercent.addItem(DEFAULT_VALUE);
         jcboPercent.addItem("#,##0.##%");
