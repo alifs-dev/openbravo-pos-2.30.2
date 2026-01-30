@@ -19,8 +19,6 @@
 
 package com.openbravo.pos.util;
 
-import java.text.*;
-
 public final class CurrencyChange {
 
     public final static double EUROS_CHANGE = 166.386;

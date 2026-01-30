@@ -156,7 +156,7 @@ public abstract class Formats {
             return m_integerformat.format(((Number) value).longValue());
         }   
         protected Object parseValueInt(String value) throws ParseException {
-            return new Integer(m_integerformat.parse(value).intValue());
+            return Integer.valueOf(m_integerformat.parse(value).intValue());
         }
         public int getAlignment() {
             return javax.swing.SwingConstants.RIGHT;
@@ -178,7 +178,7 @@ public abstract class Formats {
             return m_doubleformat.format(DoubleUtils.fixDecimals((Number) value)); // quickfix for 3838
         }   
         protected Object parseValueInt(String value) throws ParseException {
-            return new Double(m_doubleformat.parse(value).doubleValue());
+            return Double.valueOf(m_doubleformat.parse(value).doubleValue());
         }
         public int getAlignment() {
             return javax.swing.SwingConstants.RIGHT;
@@ -190,10 +190,10 @@ public abstract class Formats {
         }   
         protected Object parseValueInt(String value) throws ParseException {
             try {
-                return new Double(m_percentformat.parse(value).doubleValue());
+                return Double.valueOf(m_percentformat.parse(value).doubleValue());
             } catch (ParseException e) {
                 // Segunda oportunidad como numero normalito
-                return new Double(m_doubleformat.parse(value).doubleValue() / 100);
+                return Double.valueOf(m_doubleformat.parse(value).doubleValue() / 100);
             }
         }
         public int getAlignment() {
@@ -206,10 +206,10 @@ public abstract class Formats {
         }   
         protected Object parseValueInt(String value) throws ParseException {
             try {
-                return new Double(m_currencyformat.parse(value).doubleValue());
+                return Double.valueOf(m_currencyformat.parse(value).doubleValue());
             } catch (ParseException e) {
                 // Segunda oportunidad como numero normalito
-                return new Double(m_doubleformat.parse(value).doubleValue());
+                return Double.valueOf(m_doubleformat.parse(value).doubleValue());
             }
         }
         public int getAlignment() {

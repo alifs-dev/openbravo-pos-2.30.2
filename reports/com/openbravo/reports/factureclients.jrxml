@@ -78,19 +78,19 @@ ORDER BY CUSTOMERS.NAME,RECEIPTS.DATENEW ASC]]>
 	</field>
 	<variable name="HT_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{BASE}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TVA55_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TVA5_5}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TTC_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL_TICKET}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TVA196_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TVA19_6}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="Customer" isStartNewPage="true" isResetPageNumber="true">
 		<groupExpression><![CDATA[$F{NAME}]]></groupExpression>

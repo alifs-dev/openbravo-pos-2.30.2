@@ -136,8 +136,8 @@ public class ProductsSync implements ProcessAction {
                                 : MovementReason.OUT_MOVEMENT.getKey();
                         diary[3] = warehouse;
                         diary[4] = p.getID();
-                        diary[5] = new Double(diff);
-                        diary[6] = new Double(p.getPriceBuy());                                
+                        diary[5] = Double.valueOf(diff);
+                        diary[6] = Double.valueOf(p.getPriceBuy());                                
                         dlsales.getStockDiaryInsert().exec(diary);   
                     }
                 }

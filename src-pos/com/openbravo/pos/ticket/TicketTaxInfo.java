@@ -59,12 +59,12 @@ public class TicketTaxInfo {
     }
     
     public String printSubTotal() {
-        return Formats.CURRENCY.formatValue(new Double(getSubTotal()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getSubTotal()));
     }
     public String printTax() {
-        return Formats.CURRENCY.formatValue(new Double(getTax()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getTax()));
     }    
     public String printTotal() {
-        return Formats.CURRENCY.formatValue(new Double(getTotal()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getTotal()));
     }    
 }

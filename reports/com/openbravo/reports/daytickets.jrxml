@@ -32,11 +32,11 @@ ORDER BY
 	</field>
 	<variable name="TOTALTICKET" class="java.lang.Double" resetType="Group" resetGroup="TICKETS_TICKETID" calculation="Sum">
 		<variableExpression><![CDATA[$F{PAYMENTS_TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TOTALALLTICKET" class="java.lang.Double" resetType="Group" resetGroup="RECEIPTS_DATENEW" calculation="Sum">
 		<variableExpression><![CDATA[$F{PAYMENTS_TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="RECEIPTS_DATENEW">
 		<groupExpression><![CDATA[$F{RECEIPTS_DATENEW}]]></groupExpression>

@@ -77,21 +77,21 @@ ORDER BY CUSTOMERS.NAME,RECEIPTS.DATENEW DESC]]>
 	</field>
 	<variable name="HT_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{BASE}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TVA_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{AMOUNT}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TTC_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL_TICKET}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="TOTALPAYE" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL_PAYE}]]></variableExpression>
 	</variable>
 	<variable name="RESTANTDU" class="java.lang.Double" resetType="Group" resetGroup="Customer">
-		<variableExpression><![CDATA[new Double ($V{TTC_TOTAL}.doubleValue()+$V{TOTALPAYE}.doubleValue())]]></variableExpression>
+		<variableExpression><![CDATA[Double.valueOf ($V{TTC_TOTAL}.doubleValue()+$V{TOTALPAYE}.doubleValue())]]></variableExpression>
 	</variable>
 	<group name="Customer" isStartNewPage="true" isResetPageNumber="true">
 		<groupExpression><![CDATA[$F{NAME}]]></groupExpression>

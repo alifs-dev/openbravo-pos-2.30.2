@@ -100,7 +100,7 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
         this.customerext = customerext;        
 
         m_jButtonPrint.setSelected(printselected);
-        m_jTotalEuros.setText(Formats.CURRENCY.formatValue(new Double(m_dTotal)));
+        m_jTotalEuros.setText(Formats.CURRENCY.formatValue(Double.valueOf(m_dTotal)));
         
         addTabs();
 
@@ -256,7 +256,7 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
     
     private void printState() {
         
-        m_jRemaininglEuros.setText(Formats.CURRENCY.formatValue(new Double(m_dTotal - m_aPaymentInfo.getTotal())));
+        m_jRemaininglEuros.setText(Formats.CURRENCY.formatValue(Double.valueOf(m_dTotal - m_aPaymentInfo.getTotal())));
         m_jButtonRemove.setEnabled(!m_aPaymentInfo.isEmpty());
         m_jTabPayment.setSelectedIndex(0); // selecciono el primero
         ((JPaymentInterface) m_jTabPayment.getSelectedComponent()).activate(customerext, m_dTotal - m_aPaymentInfo.getTotal(), m_sTransactionID);

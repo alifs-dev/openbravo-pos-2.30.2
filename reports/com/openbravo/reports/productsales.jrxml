@@ -132,14 +132,14 @@ ORDER BY PRODUCTS.NAME]]>
 						<seriesExpression><![CDATA[$R{label.units}]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{UNITS}]]></valueExpression>
-						<labelExpression><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(new Double($F{UNITS}.doubleValue()))]]></labelExpression>
+						<labelExpression><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(Double.valueOf($F{UNITS}.doubleValue()))]]></labelExpression>
 						<itemHyperlink/>
 					</categorySeries>
 					<categorySeries>
 						<seriesExpression><![CDATA[$R{label.total}]]></seriesExpression>
 						<categoryExpression><![CDATA[$F{NAME}]]></categoryExpression>
 						<valueExpression><![CDATA[$F{TOTAL}]]></valueExpression>
-						<labelExpression><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(new Double($F{TOTAL}.doubleValue()))]]></labelExpression>
+						<labelExpression><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(Double.valueOf($F{TOTAL}.doubleValue()))]]></labelExpression>
 						<itemHyperlink/>
 					</categorySeries>
 				</categoryDataset>

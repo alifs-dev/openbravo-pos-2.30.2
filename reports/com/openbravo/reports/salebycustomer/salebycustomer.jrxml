@@ -32,11 +32,11 @@ ORDER BY CUSTOMERS.NAME, PRODUCTS.NAME, RECEIPTS.DATENEW]]>
 	<field name="TOTAL" class="java.lang.Double"/>
 	<variable name="BIGTOTAL" class="java.lang.Double" resetType="Group" resetGroup="bycustomer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="BIGUNITS" class="java.lang.Double" resetType="Group" resetGroup="bycustomer" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITS}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="SUM_TOTAL" class="java.lang.Double" resetType="None" incrementType="Group" incrementGroup="bycustomer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>

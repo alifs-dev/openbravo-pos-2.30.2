@@ -68,12 +68,12 @@ public class PaymentInfoTicket extends PaymentInfo implements SerializableRead  
         return m_transactionID;
     }
     public String printPaid() {
-        return Formats.CURRENCY.formatValue(new Double(m_dTicket));
+        return Formats.CURRENCY.formatValue(Double.valueOf(m_dTicket));
     }
     
     // Especificas
     public String printPaperTotal() {
         // En una devolucion hay que cambiar el signo al total
-        return Formats.CURRENCY.formatValue(new Double(-m_dTicket));
+        return Formats.CURRENCY.formatValue(Double.valueOf(-m_dTicket));
     }          
 }
