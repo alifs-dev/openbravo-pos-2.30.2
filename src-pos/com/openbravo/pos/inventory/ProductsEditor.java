@@ -368,7 +368,7 @@ public class ProductsEditor extends JPanel implements EditorRecord {
             if (dPriceBuy == null || dPriceSell == null) {
                 m_jmargin.setText(null);
             } else {
-                m_jmargin.setText(Formats.PERCENT.formatValue(new Double(dPriceSell.doubleValue() / dPriceBuy.doubleValue() - 1.0)));
+                m_jmargin.setText(Formats.PERCENT.formatValue(Double.valueOf(dPriceSell.doubleValue() / dPriceBuy.doubleValue() - 1.0)));
             }    
             reportlock = false;
         }
@@ -385,7 +385,7 @@ public class ProductsEditor extends JPanel implements EditorRecord {
                 m_jPriceSellTax.setText(null);
             } else {               
                 double dTaxRate = taxeslogic.getTaxRate((TaxCategoryInfo) taxcatmodel.getSelectedItem(), new Date());
-                m_jPriceSellTax.setText(Formats.CURRENCY.formatValue(new Double(dPriceSell.doubleValue() * (1.0 + dTaxRate))));
+                m_jPriceSellTax.setText(Formats.CURRENCY.formatValue(Double.valueOf(dPriceSell.doubleValue() * (1.0 + dTaxRate))));
             }            
             reportlock = false;
         }
@@ -402,7 +402,7 @@ public class ProductsEditor extends JPanel implements EditorRecord {
             if (dMargin == null || dPriceBuy == null) {
                 setPriceSell(null);
             } else {
-                setPriceSell(new Double(dPriceBuy.doubleValue() * (1.0 + dMargin.doubleValue())));
+                setPriceSell(Double.valueOf(dPriceBuy.doubleValue() * (1.0 + dMargin.doubleValue())));
             }                        
             
             reportlock = false;
@@ -421,7 +421,7 @@ public class ProductsEditor extends JPanel implements EditorRecord {
                 setPriceSell(null);
             } else {
                 double dTaxRate = taxeslogic.getTaxRate((TaxCategoryInfo) taxcatmodel.getSelectedItem(), new Date());
-                setPriceSell(new Double(dPriceSellTax.doubleValue() / (1.0 + dTaxRate)));
+                setPriceSell(Double.valueOf(dPriceSellTax.doubleValue() / (1.0 + dTaxRate)));
             }   
                         
             reportlock = false;

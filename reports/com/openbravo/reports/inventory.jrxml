@@ -40,20 +40,20 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 	<field name="LOCATIONNAME" class="java.lang.String"/>
 	<field name="STOCKMAXIMUM" class="java.lang.Double"/>
 	<variable name="BUYVALUE" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
-		<variableExpression><![CDATA[new Double($F{PRICEBUY}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<variableExpression><![CDATA[Double.valueOf($F{PRICEBUY}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="SELLVALUE" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
-		<variableExpression><![CDATA[new Double($F{PRICESELL}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<variableExpression><![CDATA[Double.valueOf($F{PRICESELL}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="VOLUMEVALUE" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
-		<variableExpression><![CDATA[new Double($F{STOCKVOLUME}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<variableExpression><![CDATA[Double.valueOf($F{STOCKVOLUME}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="COSTVALUE" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
-		<variableExpression><![CDATA[new Double($F{STOCKCOST}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<variableExpression><![CDATA[Double.valueOf($F{STOCKCOST}.doubleValue() * $F{UNITS}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="LOCATIONSGROUP">
 		<groupExpression><![CDATA[$F{LOCATIONID}]]></groupExpression>
@@ -393,7 +393,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 		<band height="46">
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="290" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()>= $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()>= $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -417,7 +417,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Dialog" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(new Double($F{STOCKCOST}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(Double.valueOf($F{STOCKCOST}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-1" mode="Opaque" x="0" y="0" width="70" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -447,7 +447,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="450" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()>= $F{STOCKSECURITY}.doubleValue() 
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()>= $F{STOCKSECURITY}.doubleValue() 
          && $F{UNITS}.doubleValue()<= $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
@@ -489,7 +489,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="290" y="0" width="80" height="20" forecolor="#FF0000" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()< $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()< $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -513,7 +513,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Dialog" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(new Double($F{STOCKVOLUME}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(Double.valueOf($F{STOCKVOLUME}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="290" y="20" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -526,7 +526,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Dialog" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(new Double($F{PRICESELL}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(Double.valueOf($F{PRICESELL}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="130" y="20" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -539,7 +539,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 				<textElement textAlignment="Right" verticalAlignment="Top" rotation="None" lineSpacing="Single">
 					<font fontName="Dialog" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(new Double($F{PRICEBUY}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(Double.valueOf($F{PRICEBUY}.doubleValue() * $F{UNITS}.doubleValue()))]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement key="line-5" mode="Opaque" x="0" y="37" width="530" height="1" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -549,7 +549,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</line>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="450" y="0" width="80" height="20" forecolor="#FF0033" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()< $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()< $F{STOCKSECURITY}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -564,7 +564,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="370" y="0" width="80" height="20" forecolor="#000000" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()<= $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()<= $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -579,7 +579,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="370" y="0" width="80" height="20" forecolor="#330099" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()> $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()> $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -594,7 +594,7 @@ ORDER BY STOCKCURRENT.LOCATION, CATEGORIES.NAME, PRODUCTS.NAME]]>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
 				<reportElement key="textField-4" mode="Opaque" x="450" y="0" width="80" height="20" forecolor="#330099" backcolor="#FFFFFF">
-					<printWhenExpression><![CDATA[new Boolean($F{UNITS}.doubleValue()> $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
+					<printWhenExpression><![CDATA[Boolean.valueOf($F{UNITS}.doubleValue()> $F{STOCKMAXIMUM}.doubleValue())]]></printWhenExpression>
 				</reportElement>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>

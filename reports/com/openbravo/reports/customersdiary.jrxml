@@ -14,7 +14,7 @@
 	<field name="NAME" class="java.lang.String"/>
 	<variable name="CUSTOMER_TOTAL" class="java.lang.Double" resetType="Group" resetGroup="Customer" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="Customer">
 		<groupExpression><![CDATA[$F{NAME}]]></groupExpression>

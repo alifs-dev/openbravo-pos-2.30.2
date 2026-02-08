@@ -295,7 +295,7 @@ public class StockDiaryEditor extends javax.swing.JPanel implements EditorRecord
         if (d == null || i == null) {
             return d;
         } else if (i.intValue() < 0) {
-            return new Double(-d.doubleValue());
+            return Double.valueOf(-d.doubleValue());
         } else {
             return d;
         } 
@@ -307,7 +307,7 @@ public class StockDiaryEditor extends javax.swing.JPanel implements EditorRecord
             return d;
         } else if ((i.intValue() > 0 && d.doubleValue() < 0.0) ||
             (i.intValue() < 0 && d.doubleValue() > 0.0)) {
-            return new Double(-d.doubleValue());
+            return Double.valueOf(-d.doubleValue());
         } else {
             return d;
         }            

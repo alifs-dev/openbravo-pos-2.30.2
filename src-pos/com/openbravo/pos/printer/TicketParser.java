@@ -45,7 +45,7 @@ public class TicketParser extends DefaultHandler {
     
     private StringBuffer text;
     
-    private String bcfield;
+    private String bcresource;
     private String bctype;
     private String bcposition;
     private int m_iTextAlign;
@@ -104,7 +104,7 @@ public class TicketParser extends DefaultHandler {
     public void startDocument() throws SAXException {
         // inicalizo las variables pertinentes
         text = null;
-        bcfield = null;
+        bcresource = null;
         bctype = null;
         bcposition = null;
         m_sVisorLine = null;
@@ -170,7 +170,7 @@ public class TicketParser extends DefaultHandler {
             } else if ("text".equals(qName)) {
                 text = new StringBuffer();
                 bctype = attributes.getValue("type");
-                bcfield = attributes.getValue("field");
+                bcresource = attributes.getValue("resource");
                 m_iTextStyle = ("true".equals(attributes.getValue("bold")) ? DevicePrinter.STYLE_BOLD : DevicePrinter.STYLE_PLAIN)
                              | ("true".equals(attributes.getValue("underline")) ? DevicePrinter.STYLE_UNDERLINE : DevicePrinter.STYLE_PLAIN);
                 String sAlign = attributes.getValue("align");
@@ -192,6 +192,8 @@ public class TicketParser extends DefaultHandler {
             } else if ("line2".equals(qName)) { // linea 2 del visor
                 m_sVisorLine = new StringBuffer();
             } else if ("text".equals(qName)) {
+                bctype = attributes.getValue("type");
+                bcresource = attributes.getValue("resource");
                 text = new StringBuffer();
                 String sAlign = attributes.getValue("align");
                 if ("right".equals(sAlign)) {
@@ -256,12 +258,12 @@ public class TicketParser extends DefaultHandler {
                 text = null;
             } else if ("text".equals(qName)) {
                     if("json".equals(bctype)) {
-                        String textResource = m_system.getResourceAsText(text.toString()); 
-                        if (bcfield != null && textResource != "") {
+                        String textResource = m_system.getResourceAsText(bcresource.toString()); 
+                        if (bcresource != null && textResource != "") {
                             try {
                                 Object jsonObj = parser.parse(textResource);  
                                 JSONObject jsonObject = (JSONObject) jsonObj;
-                                text = new StringBuffer(jsonObject.get(bcfield).toString());
+                                text = new StringBuffer(jsonObject.get(text.toString()).toString());
             
                             } catch (ParseException e) {
                                 // TODO Auto-generated catch block
@@ -309,6 +311,25 @@ public class TicketParser extends DefaultHandler {
                 m_sVisorLine2 = m_sVisorLine.toString();
                 m_sVisorLine = null;
             } else if ("text".equals(qName)) {
+                if("json".equals(bctype)) {
+                    String textResource = m_system.getResourceAsText(bcresource.toString()); 
+                    if (bcresource != null && textResource != "") {
+                        try {
+                            Object jsonObj = parser.parse(textResource);  
+                            JSONObject jsonObject = (JSONObject) jsonObj;
+                            
+                            Object field = jsonObject.get(text.toString());
+                            if (field != null) {
+                                text = new StringBuffer(field.toString());
+                            } else {
+                                text = new StringBuffer("OpenBravo");
+                            }
+                        } catch (ParseException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }            
+                }
                 if (m_iTextLength > 0) {
                     switch(m_iTextAlign) {
                     case DevicePrinter.ALIGN_RIGHT:

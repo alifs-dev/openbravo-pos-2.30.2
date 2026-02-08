@@ -172,9 +172,9 @@ ORDER BY CATEGORIES.NAME ASC]]>
 				</pieDataset>
 				<piePlot isCircular="true" labelFormat="{1} ({2})" legendLabelFormat="- {0}">
 					<plot/>
-					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+					<!--<itemLabel color="#000000" backgroundColor="#FFFFFF">
 						<font fontName="Dialog" size="12" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					</itemLabel>
+					</itemLabel> -->
 				</piePlot>
 			</pieChart>
 			<pieChart>
@@ -198,9 +198,9 @@ ORDER BY CATEGORIES.NAME ASC]]>
 				</pieDataset>
 				<piePlot isCircular="true" labelFormat="{1} ({2})" legendLabelFormat="- {0}">
 					<plot/>
-					<itemLabel color="#000000" backgroundColor="#FFFFFF">
+					<!--<itemLabel color="#000000" backgroundColor="#FFFFFF">
 						<font fontName="Dialog" size="12" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					</itemLabel>
+					</itemLabel> -->
 				</piePlot>
 			</pieChart>
 		</band>

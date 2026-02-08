@@ -20,14 +20,6 @@
 package com.openbravo.pos.printer.screen;
 
 import java.awt.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.util.*;
-import java.awt.print.*;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
 
 /**
  *

@@ -82,6 +82,6 @@ public class InventoryRecord {
         return StringUtils.encodeXML(m_reason.toString());
     }    
     public String printSubTotal() {
-        return Formats.CURRENCY.formatValue(new Double(getSubTotal()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getSubTotal()));
     }    
 }

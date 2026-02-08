@@ -91,7 +91,7 @@ public class Payment implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        _hashCode += new Double(getAmount()).hashCode();
+        _hashCode += Double.valueOf(getAmount()).hashCode();
         if (getPaymentType() != null) {
             _hashCode += getPaymentType().hashCode();
         }

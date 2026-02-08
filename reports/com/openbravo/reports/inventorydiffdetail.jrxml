@@ -40,39 +40,39 @@ ORDER BY LOCATIONS.ID, CATEGORIES.NAME, PRODUCTS.NAME]]>
 	<field name="ATTINSTANCEDESC" class="java.lang.String"/>
 	<variable name="PARTIALIN" class="java.lang.Double" resetType="Group" resetGroup="CATEGORY" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALIN}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PARTIALOUT" class="java.lang.Double" resetType="Group" resetGroup="CATEGORY" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALOUT}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PARTIALDIFF" class="java.lang.Double" resetType="Group" resetGroup="CATEGORY" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALDIFF}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="SUMIN" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALIN}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="SUMOUT" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALOUT}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="SUMDIFF" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONSGROUP" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALDIFF}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PRODUCTIN" class="java.lang.Double" resetType="Group" resetGroup="PRODUCTS" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITSIN}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PRODUCTOUT" class="java.lang.Double" resetType="Group" resetGroup="PRODUCTS" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITSOUT}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PRODUCTDIFF" class="java.lang.Double" resetType="Group" resetGroup="PRODUCTS" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITSDIFF}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="LOCATIONSGROUP">
 		<groupExpression><![CDATA[$F{LOCATIONID}]]></groupExpression>
@@ -165,7 +165,7 @@ ORDER BY LOCATIONS.ID, CATEGORIES.NAME, PRODUCTS.NAME]]>
 						<font fontName="Dialog" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(
-new Double(-1.0 * ((Double)$V{SUMOUT}).doubleValue()))]]></textFieldExpression>
+Double.valueOf(-1.0 * ((Double)$V{SUMOUT}).doubleValue()))]]></textFieldExpression>
 				</textField>
 				<textField pattern="" isBlankWhenNull="false">
 					<reportElement key="textField-5" mode="Opaque" x="421" y="22" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -331,7 +331,7 @@ new Double(-1.0 * ((Double)$V{SUMOUT}).doubleValue()))]]></textFieldExpression>
 						<font fontName="Dialog" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.CURRENCY.formatValue(
-new Double(-1.0 * ((Double)$V{PARTIALOUT}).doubleValue()))]]></textFieldExpression>
+Double.valueOf(-1.0 * ((Double)$V{PARTIALOUT}).doubleValue()))]]></textFieldExpression>
 				</textField>
 			</band>
 		</groupFooter>
@@ -391,7 +391,7 @@ new Double(-1.0 * ((Double)$V{PARTIALOUT}).doubleValue()))]]></textFieldExpressi
 						<font fontName="Dialog" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(
-new Double(-1.0 * ((Double)$V{PRODUCTOUT}).doubleValue()))]]></textFieldExpression>
+Double.valueOf(-1.0 * ((Double)$V{PRODUCTOUT}).doubleValue()))]]></textFieldExpression>
 				</textField>
 				<textField evaluationTime="Group" evaluationGroup="PRODUCTS" pattern="" isBlankWhenNull="true">
 					<reportElement key="textField-21" mode="Transparent" x="420" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
@@ -528,7 +528,7 @@ new Double(-1.0 * ((Double)$V{PRODUCTOUT}).doubleValue()))]]></textFieldExpressi
 					<font fontName="Dialog" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[com.openbravo.format.Formats.DOUBLE.formatValue(
-new Double(-1.0 * ((Double)$F{UNITSOUT}).doubleValue()))]]></textFieldExpression>
+Double.valueOf(-1.0 * ((Double)$F{UNITSOUT}).doubleValue()))]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="true">
 				<reportElement key="textField-5" mode="Transparent" x="420" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF"/>

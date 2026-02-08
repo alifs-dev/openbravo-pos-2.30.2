@@ -111,7 +111,7 @@ public class JPaymentDebt extends javax.swing.JPanel implements JPaymentInterfac
                 m_dPaid = value;
             } 
 
-            m_jMoneyEuros.setText(Formats.CURRENCY.formatValue(new Double(m_dPaid)));
+            m_jMoneyEuros.setText(Formats.CURRENCY.formatValue(Double.valueOf(m_dPaid)));
             
             
             if (RoundUtils.compare(RoundUtils.getValue(customerext.getCurdebt()) + m_dPaid, RoundUtils.getValue(customerext.getMaxdebt())) >= 0)  { 

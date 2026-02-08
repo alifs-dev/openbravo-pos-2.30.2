@@ -59,8 +59,8 @@ public class PaymentsModel {
         
         PaymentsModel p = new PaymentsModel();
         
-        p.m_iPayments = new Integer(0);
-        p.m_dPaymentsTotal = new Double(0.0);
+        p.m_iPayments = Integer.valueOf(0);
+        p.m_dPaymentsTotal = Double.valueOf(0.0);
         p.m_lpayments = new ArrayList<PaymentsLine>();
         
         p.m_iSales = null;
@@ -92,8 +92,8 @@ public class PaymentsModel {
             .find(app.getActiveCashIndex());
             
         if (valtickets == null) {
-            p.m_iPayments = new Integer(0);
-            p.m_dPaymentsTotal = new Double(0.0);
+            p.m_iPayments = Integer.valueOf(0);
+            p.m_dPaymentsTotal = Double.valueOf(0.0);
         } else {
             p.m_iPayments = (Integer) valtickets[0];
             p.m_dPaymentsTotal = (Double) valtickets[1];

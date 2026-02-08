@@ -296,14 +296,14 @@ public class Product implements java.io.Serializable {
         if (getImageUrl() != null) {
             _hashCode += getImageUrl().hashCode();
         }
-        _hashCode += new Double(getListPrice()).hashCode();
+        _hashCode += Double.valueOf(getListPrice()).hashCode();
         if (getName() != null) {
             _hashCode += getName().hashCode();
         }
         if (getNumber() != null) {
             _hashCode += getNumber().hashCode();
         }
-        _hashCode += new Double(getPurchasePrice()).hashCode();
+        _hashCode += Double.valueOf(getPurchasePrice()).hashCode();
         if (getTax() != null) {
             _hashCode += getTax().hashCode();
         }

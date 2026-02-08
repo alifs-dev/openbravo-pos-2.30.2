@@ -41,8 +41,6 @@ public class ThumbNailBuilder {
     }
     
     public ThumbNailBuilder(int width, int height, String img) {
-        
-        Image defimg;
         try {
             init(width, height, ImageIO.read(getClass().getClassLoader().getResourceAsStream(img)));               
         } catch (Exception fnfe) {

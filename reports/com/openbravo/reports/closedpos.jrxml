@@ -28,15 +28,15 @@ ORDER BY CLOSEDCASH.HOST, CLOSEDCASH.DATESTART]]>
 	<field name="SEQUENCE" class="java.lang.Integer"/>
 	<variable name="BIGTOTAL" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="PARTIALTOTAL" class="java.lang.Double" resetType="Group" resetGroup="byhost" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="DAYTOTAL" class="java.lang.Double" resetType="Group" resetGroup="bymoney" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTAL}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="byhost">
 		<groupExpression><![CDATA[$F{HOST}]]></groupExpression>

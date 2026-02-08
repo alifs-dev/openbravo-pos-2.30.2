@@ -164,14 +164,14 @@ public class OrderLine implements java.io.Serializable {
         if (getOrderLineId() != null) {
             _hashCode += getOrderLineId().hashCode();
         }
-        _hashCode += new Double(getPrice()).hashCode();
+        _hashCode += Double.valueOf(getPrice()).hashCode();
         if (getProductId() != null) {
             _hashCode += getProductId().hashCode();
         }
         if (getTaxId() != null) {
             _hashCode += getTaxId().hashCode();
         }
-        _hashCode += new Double(getUnits()).hashCode();
+        _hashCode += Double.valueOf(getUnits()).hashCode();
         __hashCodeCalc = false;
         return _hashCode;
     }    // Type metadata

@@ -11,7 +11,7 @@
 	<field name="TOTALTAXES" class="java.lang.Double"/>
 	<variable name="BIGTOTALTAXES" class="java.lang.Double" calculation="Sum">
 		<variableExpression><![CDATA[$F{TOTALTAXES}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<background>
 		<band/>

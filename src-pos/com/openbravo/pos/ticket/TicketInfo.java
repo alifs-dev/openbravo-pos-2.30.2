@@ -423,7 +423,7 @@ public class TicketInfo implements SerializableRead, Externalizable {
     public String printId() {
         if (m_iTicketId > 0) {
             // valid ticket id
-            return Formats.INT.formatValue(new Integer(m_iTicketId));
+            return Formats.INT.formatValue(Integer.valueOf(m_iTicketId));
         } else {
             return "";
         }
@@ -442,22 +442,22 @@ public class TicketInfo implements SerializableRead, Externalizable {
     }
 
     public String printArticlesCount() {
-        return Formats.DOUBLE.formatValue(new Double(getArticlesCount()));
+        return Formats.DOUBLE.formatValue(Double.valueOf(getArticlesCount()));
     }
 
     public String printSubTotal() {
-        return Formats.CURRENCY.formatValue(new Double(getSubTotal()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getSubTotal()));
     }
 
     public String printTax() {
-        return Formats.CURRENCY.formatValue(new Double(getTax()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getTax()));
     }
 
     public String printTotal() {
-        return Formats.CURRENCY.formatValue(new Double(getTotal()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getTotal()));
     }
 
     public String printTotalPaid() {
-        return Formats.CURRENCY.formatValue(new Double(getTotalPaid()));
+        return Formats.CURRENCY.formatValue(Double.valueOf(getTotalPaid()));
     }
 }

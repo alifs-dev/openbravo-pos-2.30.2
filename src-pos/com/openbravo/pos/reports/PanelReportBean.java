@@ -85,6 +85,10 @@ public class PanelReportBean extends JPanelReport {
         title = AppLocal.getIntString(titlekey);
     }
     
+    public void setTitleKey(String sKey, String sValues) {
+        title = AppLocal.getIntString(sKey, new Object[] {sValues});
+    }
+    
     public String getTitle() {
         return title;
     } 

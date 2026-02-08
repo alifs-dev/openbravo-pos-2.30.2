@@ -121,7 +121,7 @@ public class Tax implements java.io.Serializable {
         if (getName() != null) {
             _hashCode += getName().hashCode();
         }
-        _hashCode += new Double(getPercentage()).hashCode();
+        _hashCode += Double.valueOf(getPercentage()).hashCode();
         __hashCodeCalc = false;
         return _hashCode;
     }    // Type metadata

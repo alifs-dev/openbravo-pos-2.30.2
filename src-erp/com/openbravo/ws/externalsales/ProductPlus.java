@@ -88,7 +88,7 @@ public class ProductPlus extends com.openbravo.ws.externalsales.Product implemen
         }
         __hashCodeCalc = true;
         int _hashCode = super.hashCode();
-        _hashCode += new Double(getQtyonhand()).hashCode();
+        _hashCode += Double.valueOf(getQtyonhand()).hashCode();
         __hashCodeCalc = false;
         return _hashCode;
     }    // Type metadata

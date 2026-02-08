@@ -66,6 +66,7 @@
         submenu.addPanel("/com/openbravo/images/appointment.png", "Menu.ReportTaxes", "/com/openbravo/reports/taxes.bs");
         submenu.addPanel("/com/openbravo/images/cakes3d.png", "Menu.SalesChart", "/com/openbravo/reports/chartsales.bs");
         submenu.addPanel("/com/openbravo/images/cakes3d.png", "Menu.ProductSales", "/com/openbravo/reports/productsales.bs");
+        submenu.addPanel("/com/openbravo/images/cakes3d.png", "Pie", "/com/openbravo/reports/piesalescat.bs");
 
         // new menu
         submenu.addPanel("/com/openbravo/images/cakes3d.png", "Menu.Journal.Caisse", "/com/openbravo/reports/daytickets.bs");

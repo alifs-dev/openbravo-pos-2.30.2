@@ -35,11 +35,11 @@ ORDER BY CATEGORIES.NAME, PRODUCTS.NAME, STOCKCURRENT.LOCATION]]>
 	<field name="ATTINSTANCEDESC" class="java.lang.String"/>
 	<variable name="UNITSTOTAL" class="java.lang.Double" resetType="Group" resetGroup="PRODUCTGROUP" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITS}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<variable name="UNITSTOTALWAREHOUSE" class="java.lang.Double" resetType="Group" resetGroup="LOCATIONGROUP" calculation="Sum">
 		<variableExpression><![CDATA[$F{UNITS}]]></variableExpression>
-		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+		<initialValueExpression><![CDATA[Double.valueOf(0.0)]]></initialValueExpression>
 	</variable>
 	<group name="CATEGORIESGROUP">
 		<groupExpression><![CDATA[$F{CATEGORY}]]></groupExpression>

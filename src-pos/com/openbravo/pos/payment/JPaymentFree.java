@@ -37,7 +37,7 @@ public class JPaymentFree extends javax.swing.JPanel implements JPaymentInterfac
         
         m_dTotal = dTotal;
         
-        // m_jTotal.setText(Formats.CURRENCY.formatValue(new Double(m_dTotal)));
+        // m_jTotal.setText(Formats.CURRENCY.formatValue(Double.valueOf(m_dTotal)));
         
         m_notifier.setStatus(true, true);
     }

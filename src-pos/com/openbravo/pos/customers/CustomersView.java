@@ -333,7 +333,7 @@ public class CustomersView extends javax.swing.JPanel implements EditorRecord {
         customer[4] = m_jNotes.getText();
         customer[5] = Boolean.valueOf(m_jVisible.isSelected());
         customer[6] = Formats.STRING.parseValue(jcard.getText()); // Format to manage NULL values
-        customer[7] = Formats.CURRENCY.parseValue(txtMaxdebt.getText(), new Double(0.0));
+        customer[7] = Formats.CURRENCY.parseValue(txtMaxdebt.getText(), Double.valueOf(0.0));
         customer[8] = Formats.TIMESTAMP.parseValue(txtCurdate.getText()); // not saved
         customer[9] = Formats.CURRENCY.parseValue(txtCurdebt.getText()); // not saved
         

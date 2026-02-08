@@ -391,8 +391,8 @@ public class DataLogicSales extends BeanFactoryDataSingle {
                             location,
                             l.getProductID(),
                             l.getProductAttSetInstId(),
-                            new Double(-l.getMultiply()),
-                            new Double(l.getPrice())
+                            Double.valueOf(-l.getMultiply()),
+                            Double.valueOf(l.getPrice())
                         });
                     }
                 }
@@ -464,8 +464,8 @@ public class DataLogicSales extends BeanFactoryDataSingle {
                             location,
                             ticket.getLine(i).getProductID(),
                             ticket.getLine(i).getProductAttSetInstId(),
-                            new Double(ticket.getLine(i).getMultiply()),
-                            new Double(ticket.getLine(i).getPrice())
+                            Double.valueOf(ticket.getLine(i).getMultiply()),
+                            Double.valueOf(ticket.getLine(i).getPrice())
                         });
                     }
                 }

@@ -938,6 +938,10 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
                 ScriptEngine script = ScriptFactory.getScriptEngine(ScriptFactory.VELOCITY);
                 script.put("taxes", taxcollection);
                 script.put("taxeslogic", taxeslogic);
+
+                // @TODO rajout a verifier
+                taxeslogic.calculateTaxes(ticket); 
+
                 script.put("ticket", ticket);
                 script.put("place", ticketext);
                 m_TTP.printTicket(script.eval(sresource).toString());
@@ -947,6 +951,9 @@ public abstract class JPanelTicket extends JPanel implements JPanelView, BeanFac
             } catch (TicketPrinterException e) {
                 MessageInf msg = new MessageInf(MessageInf.SGN_WARNING, AppLocal.getIntString("message.cannotprintticket"), e);
                 msg.show(JPanelTicket.this);
+            } catch (TaxesException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }

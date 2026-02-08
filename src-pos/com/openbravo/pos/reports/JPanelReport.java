@@ -21,6 +21,11 @@ package com.openbravo.pos.reports;
 
 import java.awt.*;
 import javax.swing.*;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.util.*;
 import java.io.*;
 
@@ -39,6 +44,7 @@ import com.openbravo.data.user.EditorCreator;
 import com.openbravo.pos.forms.BeanFactoryApp;
 import com.openbravo.pos.forms.BeanFactoryException;
 import com.openbravo.pos.forms.DataLogicSales;
+import com.openbravo.pos.forms.DataLogicSystem;
 import com.openbravo.pos.sales.TaxesLogic;
 import com.openbravo.pos.util.JRViewer300;
 
@@ -153,6 +159,20 @@ public abstract class JPanelReport extends JPanel implements JPanelView, BeanFac
                 }                
                 reportparams.put("TAXESLOGIC", taxeslogic); 
                 
+
+                try {
+                    DataLogicSystem dl = (DataLogicSystem) this.m_App.getBean("com.openbravo.pos.forms.DataLogicSystem");
+                    JSONParser parser = new JSONParser();
+                    String resource = dl.getResourceAsText("Shop.Properties");
+
+                    Object jsonObj = parser.parse(resource.toString());  
+                    JSONObject jsonObject = (JSONObject) jsonObj;
+                    reportparams.put("SHOP", jsonObject) ;
+                    
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 JasperPrint jp = JasperFillManager.fillReport(jr, reportparams, data);    
             
                 reportviewer.loadJasperPrint(jp);     
