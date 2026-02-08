@@ -36,6 +36,7 @@ IRC: #openbravo in freenode
 ## Update functionnalities
 
 ### Java 21 support
+
 ```
 add symlink : jdt-compiler-3.1.1.jar -> ecj-3.36.0.jar
 remove old: jdt-compiler-3.1.1.jar
@@ -59,7 +60,10 @@ add this to *.jrxml file:
   <parameter name="SHOP" class="org.json.simple.JSONObject"/>
   ....
   <textFieldExpression class="java.lang.String"><![CDATA[$P{SHOP}.get("name")]]></textFieldExpression>
+```
 
+or in ticket file (ex. Printer.Ticket)
+```
   <output>
       <display animation="scroll">
           <line>
@@ -74,13 +78,12 @@ add this to *.jrxml file:
 
 ```
 #### add default local 
- jcboCurrency.addItem("#0.00 " + currencySymbol);
- jcboCurrency.addItem(currencySymbol + " #,##0.00");
+- jcboCurrency.addItem("#0.00 " + currencySymbol);
+- jcboCurrency.addItem(currencySymbol + " #,##0.00");
 
 ### deprecated changes
-new Double(ticket.getLine(i).getMultiply()),
-- new Double(ticket.getLine(i).getPrice())
-  Double.valueOf(ticket.getLine(i).getMultiply()),
+- snew Double(ticket.getLine(i).getMultiply()),
+- Double.valueOf(ticket.getLine(i).getMultiply()),
 
 #### moved files in config folder:
 * openbravopos.properties
