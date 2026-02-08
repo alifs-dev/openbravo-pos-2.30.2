@@ -1,0 +1,6 @@
+{
+  "name": "Shop Demo",
+  "adresse": "1 rue des lilas"
+  "adresse2": "75000 Paris"
+  "afficheur": "Shop Demo, bonjour, des nouveautés tous les jours et des promo toutes l'année"
+}

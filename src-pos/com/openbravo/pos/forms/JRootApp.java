@@ -30,6 +30,10 @@ import java.util.Properties;
 import java.util.UUID;
 import javax.swing.*;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import com.openbravo.pos.printer.*;
 
 import com.openbravo.beans.*;
@@ -77,7 +81,9 @@ public class JRootApp extends JPanel implements AppView {
     private JPrincipalApp m_principalapp = null;
     
     private static HashMap<String, String> m_oldclasses; // This is for backwards compatibility purposes
-    
+
+    private JSONParser parser = new JSONParser();
+
     static {        
         initOldClasses();
     }
@@ -206,8 +212,18 @@ public class JRootApp extends JPanel implements AppView {
         // Leemos los recursos basicos
         BufferedImage imgicon = m_dlSystem.getResourceAsImage("Window.Logo");
         m_jLblTitle.setIcon(imgicon == null ? null : new ImageIcon(imgicon));
-        m_jLblTitle.setText(m_dlSystem.getResourceAsText("Window.Title"));  
-        
+
+        String resource = m_dlSystem.getResourceAsText("Shop.Properties");
+
+        try {
+            Object jsonObj = parser.parse(resource.toString());  
+            JSONObject jsonObject = (JSONObject) jsonObj;
+            String text = jsonObject.get("name").toString();
+            m_jLblTitle.setText(text);  
+        } catch (ParseException e) {
+            m_jLblTitle.setText(m_dlSystem.getResourceAsText("Window.Title"));
+        }
+
         String sWareHouse;
         try {
             sWareHouse = m_dlSystem.findLocationName(m_sInventoryLocation);

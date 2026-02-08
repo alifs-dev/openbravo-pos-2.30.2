@@ -9,6 +9,8 @@
 	<import value="java.util.*"/>
 	<import value="net.sf.jasperreports.engine.data.*"/>
 	<parameter name="ARG" class="java.lang.Object" isForPrompting="false"/>
+	<parameter name="SHOP" class="org.json.simple.JSONObject"/>
+
 	<queryString>
 		<![CDATA[SELECT RECEIPTS.DATENEW, TICKETS.TICKETID,
        PAYMENTS.TOTAL, CUSTOMERS.ADDRESS,
@@ -457,7 +459,7 @@ ORDER BY CUSTOMERS.NAME,RECEIPTS.DATENEW ASC]]>
 				<textElement textAlignment="Left" verticalAlignment="Top">
 					<font fontName="Dialog" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$R{label.coord}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{SHOP}.get("name")]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Group" evaluationGroup="Customer">
 				<reportElement x="499" y="53" width="33" height="20"/>

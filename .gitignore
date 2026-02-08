@@ -3,3 +3,5 @@ derby.log
 backup
 jetty
 jetty_6.1.12
+config
+.vscode
