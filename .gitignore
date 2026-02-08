@@ -1,5 +1,6 @@
 build
 derby.log
 backup
-.vscode
+.vscode/*
+!.vscode/launch.json
 config/openbravopos.properties
